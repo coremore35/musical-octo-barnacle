@@ -1,3 +1,3 @@
 # musical-octo-barnacle
 
-David Carrano
+David Carrano and Corey Morrison
