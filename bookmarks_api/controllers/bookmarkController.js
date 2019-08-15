@@ -43,4 +43,4 @@ bookmarks.put('/:id', (req, res) => {
   );
 });
 
-module.exports = Bookmark;
+module.exports = bookmarks;

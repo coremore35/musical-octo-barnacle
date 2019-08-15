@@ -23,6 +23,7 @@ const whitelist = [
 // };
 
 // app.use(cors(corsOptions));
+
 app.use('/bookmarks', bookmarksController);
 
 mongoose.connection.on('error', err =>
@@ -30,7 +31,7 @@ mongoose.connection.on('error', err =>
 );
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'));
 
-mongoose.connect('mongodb://localhost:27017/holidays', {
+mongoose.connect('mongodb://localhost:27017/bookmarks', {
   useNewUrlParser: true
 });
 mongoose.connection.once('open', () => {
