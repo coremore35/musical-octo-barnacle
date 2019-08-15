@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const bookmarksController = require('./controllers/bookmarkSchema.js')
+const bookmarksController = require('./controllers/bookmarkController.js')
 const mongoose = require('mongoose');
 const cors = require('cors');
 const port = 3003

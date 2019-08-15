@@ -1,6 +1,6 @@
 const express = require('express');
 const bookmarks = express.Router();
-const Bookmark = require('../models/bookmarkSchema.js');
+const Bookmark = require('../models/bookmarkSchema');
 
 bookmarks.get('/', (req, res) => {
     Bookmark.find({}, (err, foundBookmarks) => {
