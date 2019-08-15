@@ -7,23 +7,22 @@ const cors = require('cors');
 
 app.use(express.json());
 
-const whitelist = [
-    'http://localhost:3000',
-    'https://fathomless-sierra-68956.herokuapp.com'
-];
+// const whitelist = [
+//     'http://localhost:3000',
+//     'https://fathomless-sierra-68956.herokuapp.com'
+// ];
 
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    }
-};
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// };
 
-app.use(cors(corsOptions));
-
+// app.use(cors(corsOptions));
 app.use('/bookmarks', bookmarksController);
 
 mongoose.connection.on('error', err =>
@@ -31,7 +30,7 @@ mongoose.connection.on('error', err =>
 );
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'));
 
-mongoose.connect('mongodb://localhost:27017/holidays', {
+mongoose.connect('mongodb://localhost:27017/bookmarks', {
     useNewUrlParser: true
 });
 mongoose.connection.once('open', () => {
