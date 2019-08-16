@@ -13,6 +13,7 @@ class App extends Component {
     };
     this.getBookmarks = this.getBookmarks.bind(this);
     this.handleAddBookmark = this.handleAddBookmark.bind(this);
+    this.deleteBookmark = this.deleteBookmark.bind(this);
   }
 
   async getBookmarks() {
@@ -38,6 +39,17 @@ class App extends Component {
     });
   }
 
+  async deleteBookmark(id) {
+    console.log('delete hit');
+    await axios.delete(`${baseURL}/bookmarks/${id}`);
+    const filteredBookmarks = this.state.bookmarks.filter(bookmark => {
+      return bookmark._id !== id;
+    });
+    this.setState({
+      bookmarks: filteredBookmarks
+    });
+  }
+
   render() {
     return (
       <div className='App'>
@@ -48,7 +60,10 @@ class App extends Component {
           baseURL={baseURL}
           handleAddBookmark={this.handleAddBookmark}
         />
-        <ShowBookmark bookmarks={this.state.bookmarks} />
+        <ShowBookmark
+          bookmarks={this.state.bookmarks}
+          deleteBookmark={this.deleteBookmark}
+        />
       </div>
     );
   }

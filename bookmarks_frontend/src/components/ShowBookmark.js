@@ -13,7 +13,11 @@ class ShowBookmark extends Component {
                   <button href='#' className='edit-btn'>
                     EDIT
                   </button>
-                  <button href='#' className='delete-btn'>
+                  <button
+                    href='#'
+                    className='delete-btn'
+                    onClick={() => this.props.deleteBookmark(bookmark._id)}
+                  >
                     DELETE
                   </button>
                 </li>
