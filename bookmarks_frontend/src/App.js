@@ -41,7 +41,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <div class='header'>
+        <div className='header'>
           <h1>Bookmark! </h1>
         </div>
         <NewBookmarkForm
