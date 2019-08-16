@@ -3,7 +3,6 @@ import './App.css';
 import NewBookmarkForm from './components/NewBookmarkForm';
 import axios from 'axios';
 import ShowBookmark from './components/ShowBookmark';
-import NewBookmarkForm from './components/NewBookmarkForm';
 
 let baseURL = 'http://localhost:3003';
 class App extends Component {
