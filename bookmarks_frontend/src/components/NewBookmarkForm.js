@@ -8,13 +8,30 @@ class NewBookmarkForm extends Component {
       title: '',
       url: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange() {}
+  handleChange(event) {
+    this.setState({
+      [event.currentTarget.id]: event.currentTarget.value
+    });
+  }
+
+  async handleSubmit(event) {
+    event.preventDefault();
+    const response = await axios.post(`${this.props.baseURL}/bookmarks`, {
+      title: this.state.title,
+      url: this.state.url
+    });
+    this.setState({ title: '', url: '' });
+    console.log(response.data);
+    this.props.handleAddBookmark(response.data);
+  }
 
   render() {
     return (
-      <form className='bookmark-form'>
+      <form className='bookmark-form' onSubmit={this.handleSubmit}>
         <label htmlFor='title' />
         <input
           type='text'
@@ -31,6 +48,7 @@ class NewBookmarkForm extends Component {
           value={this.state.url}
           placeholder='Enter URL...'
         />
+        <input type='submit' value='Add New' />
       </form>
     );
   }
