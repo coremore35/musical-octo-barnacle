@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
+import { tsConstructorType } from '@babel/types';
 
 class ShowBookmark extends Component {
   render() {
     return (
-      <ul className='bookmark-ul'>
-        {this.props.bookmarks.map(bookmark => {
-          return (
-            <div>
-              <a className='bookmark-a' href={bookmark.url} key={bookmark._id}>
+      <div>
+        <ul className='bookmark-ul'>
+          {this.props.bookmarks.map(bookmark => {
+            return (
+              <div key={bookmark._id}>
                 <li className='bookmark-li'>
-                  {bookmark.title}{' '}
-                  <button href='#' className='edit-btn'>
+                  <a className='bookmark-a' href={bookmark.url}>
+                    {bookmark.title}{' '}
+                  </a>
+                  <button
+                    className='edit-btn'
+                    onClick={() => this.props.handleUpdate(bookmark)}
+                  >
                     EDIT
                   </button>
                   <button
-                    href='#'
                     className='delete-btn'
-                    onClick={() => this.props.deleteBookmark(bookmark._id)}
+                    onClick={this.props.deleteBookmark}
                   >
                     DELETE
                   </button>
                 </li>
-              </a>
-            </div>
-          );
-        })}
-      </ul>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
     );
   }
 }

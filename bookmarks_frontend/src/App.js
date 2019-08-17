@@ -53,6 +53,8 @@ class App extends Component {
   }
 
   async handleUpdate(selectedBookmark) {
+    console.log(selectedBookmark);
+    console.log('update hit');
     await axios.put(`${baseURL}/bookmarks/${selectedBookmark._id}`, {
       makeEdit: !selectedBookmark.makeEdit
     });
@@ -67,6 +69,7 @@ class App extends Component {
     this.setState({
       bookmarks: updatedBookmarks
     });
+    console.log(updatedBookmarks);
   }
 
   render() {
@@ -82,6 +85,7 @@ class App extends Component {
         <ShowBookmark
           bookmarks={this.state.bookmarks}
           deleteBookmark={this.deleteBookmark}
+          handleUpdate={this.handleUpdate}
         />
       </div>
     );
