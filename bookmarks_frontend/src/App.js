@@ -9,11 +9,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookmarks: []
+      bookmarks: [],
+      makeEdit: false
     };
     this.getBookmarks = this.getBookmarks.bind(this);
     this.handleAddBookmark = this.handleAddBookmark.bind(this);
     this.deleteBookmark = this.deleteBookmark.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   async getBookmarks() {
@@ -47,6 +49,23 @@ class App extends Component {
     });
     this.setState({
       bookmarks: filteredBookmarks
+    });
+  }
+
+  async handleUpdate(selectedBookmark) {
+    await axios.put(`${baseURL}/bookmarks/${selectedBookmark._id}`, {
+      makeEdit: !selectedBookmark.makeEdit
+    });
+    const updatedBookmarks = this.state.bookmarks.map(bookmark => {
+      if (bookmark._id === selectedBookmark._id) {
+        bookmark.makeEdit = !bookmark.makeEdit;
+        return bookmark;
+      } else {
+        return bookmark;
+      }
+    });
+    this.setState({
+      bookmarks: updatedBookmarks
     });
   }
 
