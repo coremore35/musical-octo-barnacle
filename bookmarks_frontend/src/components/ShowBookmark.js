@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { tsConstructorType } from '@babel/types';
 
 class ShowBookmark extends Component {
   render() {
@@ -8,7 +7,7 @@ class ShowBookmark extends Component {
         <ul className='bookmark-ul'>
           {this.props.bookmarks.map(bookmark => {
             return (
-              <div key={bookmark._id}>
+              <div key={bookmark._id} className='bookmark-list-wrapper'>
                 <li className='bookmark-li'>
                   <a className='bookmark-a' href={bookmark.url}>
                     {bookmark.title}{' '}
@@ -21,7 +20,7 @@ class ShowBookmark extends Component {
                   </button>
                   <button
                     className='delete-btn'
-                    onClick={this.props.deleteBookmark}
+                    onClick={() => this.props.deleteBookmark(bookmark._id)}
                   >
                     DELETE
                   </button>

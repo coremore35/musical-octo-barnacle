@@ -3,6 +3,7 @@ import './App.css';
 import NewBookmarkForm from './components/NewBookmarkForm';
 import axios from 'axios';
 import ShowBookmark from './components/ShowBookmark';
+// import EditBookmark from './components/EditBookmark';
 
 let baseURL = 'http://localhost:3003';
 class App extends Component {
@@ -10,12 +11,17 @@ class App extends Component {
     super(props);
     this.state = {
       bookmarks: [],
-      makeEdit: false
+      makeEdit: false,
+      bookmark: {}
     };
     this.getBookmarks = this.getBookmarks.bind(this);
     this.handleAddBookmark = this.handleAddBookmark.bind(this);
     this.deleteBookmark = this.deleteBookmark.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+  }
+
+  getBookmark(bookmark) {
+    this.setState({ bookmark: bookmark });
   }
 
   async getBookmarks() {
