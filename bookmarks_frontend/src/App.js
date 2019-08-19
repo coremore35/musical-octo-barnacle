@@ -82,7 +82,7 @@ class App extends Component {
     return (
       <div className='App'>
         <div className='header'>
-          <h1>Bookmark! </h1>
+          <h1>Bookmark!</h1>
         </div>
         <NewBookmarkForm
           baseURL={baseURL}
