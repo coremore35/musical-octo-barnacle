@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3003;
-const bookmarksController = require('./controllers/bookmarkController');
+const bookmarksController = require('./controllers/bookmarkController.js');
 const mongoose = require('mongoose');
 const cors = require('cors');
 

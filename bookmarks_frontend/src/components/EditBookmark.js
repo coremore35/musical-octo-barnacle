@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
-class NewBookmarkForm extends Component {
+class EditBookmark extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,6 +29,8 @@ class NewBookmarkForm extends Component {
   }
 
   render() {
+    console.log('edit reached');
+
     return (
       <form className='bookmark-form' onSubmit={this.handleSubmit}>
         <label htmlFor='title' />
@@ -54,4 +55,4 @@ class NewBookmarkForm extends Component {
   }
 }
 
-export default NewBookmarkForm;
+export default EditBookmark;

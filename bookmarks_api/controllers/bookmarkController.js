@@ -1,6 +1,6 @@
 const express = require('express');
 const bookmarks = express.Router();
-const Bookmark = require('../models/bookmarkSchema.js');
+const Bookmark = require('../models/bookmarkSchema');
 
 bookmarks.get('/', (req, res) => {
   Bookmark.find({}, (err, foundBookmarks) => {
@@ -12,6 +12,7 @@ bookmarks.get('/', (req, res) => {
 });
 
 bookmarks.post('/', (req, res) => {
+  console.log(req.body);
   Bookmark.create(req.body, (error, createdBookmark) => {
     if (error) {
       res.status(400).json({ error: error.message });
