@@ -14,7 +14,7 @@ class ShowBookmark extends Component {
                   </a>
                   <button
                     className='edit-btn'
-                    onClick={() => this.props.handleUpdate(bookmark)}
+                    onClick={() => this.props.editBookmark(bookmark._id)}
                   >
                     EDIT
                   </button>

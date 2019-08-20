@@ -2,6 +2,15 @@ const express = require('express');
 const bookmarks = express.Router();
 const Bookmark = require('../models/bookmarkSchema');
 
+bookmarks.get('/:id', (req, res) => {
+  Bookmark.findById(req.params.id, (err, foundBookmarks) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.status(200).json(foundBookmarks);
+  });
+});
+
 bookmarks.get('/', (req, res) => {
   Bookmark.find({}, (err, foundBookmarks) => {
     if (err) {

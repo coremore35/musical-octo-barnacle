@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+let baseURL = 'http://localhost:3003';
 
 class EditBookmark extends Component {
   constructor(props) {
@@ -19,17 +22,17 @@ class EditBookmark extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    const response = await axios.post(`${this.props.baseURL}/bookmarks`, {
-      title: this.state.title,
-      url: this.state.url
-    });
+    const response = await axios.put(
+      `${baseURL}/bookmarks/${this.props.editThisBookmark._id}`,
+      this.state
+    );
     this.setState({ title: '', url: '' });
-    console.log(response.data);
-    this.props.handleAddBookmark(response.data);
+    this.props.getBookmarks();
   }
 
   render() {
     console.log('edit reached');
+    console.log(this.props.editThisBookmark);
 
     return (
       <form className='bookmark-form' onSubmit={this.handleSubmit}>
@@ -38,7 +41,7 @@ class EditBookmark extends Component {
           type='text'
           id='title'
           onChange={this.handleChange}
-          value={this.state.title}
+          defaultValue={this.props.editThisBookmark.title}
           placeholder='add a developer site'
         />
         <label htmlFor='url' />
@@ -46,10 +49,10 @@ class EditBookmark extends Component {
           type='text'
           id='url'
           onChange={this.handleChange}
-          value={this.state.url}
+          defaultValue={this.props.editThisBookmark.url}
           placeholder='Enter URL...'
         />
-        <input type='submit' value='Add New' />
+        <input type='submit' value='Finish Editing' />
       </form>
     );
   }

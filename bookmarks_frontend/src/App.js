@@ -3,7 +3,7 @@ import './App.css';
 import NewBookmarkForm from './components/NewBookmarkForm';
 import axios from 'axios';
 import ShowBookmark from './components/ShowBookmark';
-// import EditBookmark from './components/EditBookmark';
+import EditBookmark from './components/EditBookmark';
 
 let baseURL = 'http://localhost:3003';
 class App extends Component {
@@ -18,6 +18,7 @@ class App extends Component {
     this.handleAddBookmark = this.handleAddBookmark.bind(this);
     this.deleteBookmark = this.deleteBookmark.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.editBookmark = this.editBookmark.bind(this);
   }
 
   getBookmark(bookmark) {
@@ -30,7 +31,8 @@ class App extends Component {
     const data = response.data;
     console.log(data);
     this.setState({
-      bookmarks: data
+      bookmarks: data,
+      edit: false
     });
   }
 
@@ -45,6 +47,19 @@ class App extends Component {
     this.setState({
       bookmarks: copyBookmarks
     });
+  }
+
+  async editBookmark(id) {
+    console.log(id);
+    console.log('editBookmark called');
+    const response = await axios.get(`${baseURL}/bookmarks/${id}`);
+    const editThisBookmark = response.data;
+    console.log(editThisBookmark);
+    this.setState(prevState => ({
+      editThisBookmark: editThisBookmark,
+      edit: true
+    }));
+    // console.log(this.state);
   }
 
   async deleteBookmark(id) {
@@ -92,7 +107,14 @@ class App extends Component {
           bookmarks={this.state.bookmarks}
           deleteBookmark={this.deleteBookmark}
           handleUpdate={this.handleUpdate}
+          editBookmark={this.editBookmark}
         />
+        {this.state.edit && (
+          <EditBookmark
+            editThisBookmark={this.state.editThisBookmark}
+            getBookmarks={this.getBookmarks}
+          />
+        )}
       </div>
     );
   }
